@@ -1,7 +1,7 @@
 // App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './app/Store.js';
+import { store } from './app/store.js';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Mens from './pages/shop/Mens';
