@@ -18,23 +18,12 @@ const ProductDetails = () => {
     const wishlistItems = useSelector(selectWishlistItems);
 
     useEffect(() => {
-        // Reset current product when component mounts or id changes
         dispatch(fetchProductById(id));
 
-        // Cleanup function to reset current product when component unmounts
         return () => {
             dispatch({ type: 'products/resetCurrentProduct' });
         };
     }, [dispatch, id]);
-
-    // Add this reducer to your productsSlice.js
-    /*
-    reducers: {
-      resetCurrentProduct: (state) => {
-        state.currentProduct = null;
-      }
-    },
-    */
 
     const isInWishlist = product ? wishlistItems.some(item => item.id === product.id) : false;
 
@@ -46,47 +35,21 @@ const ProductDetails = () => {
         }
     };
 
-    // const { id } = useParams();
-    // console.log(id);
-
-    // const product = useSelector(selectProductDetails);
-    // const status = useSelector(selectProductsStatus);
-    // const wishlistItems = useSelector(selectWishlistItems);
-
-    // const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(fetchProductById(id));
-    // }, [dispatch, id]);
-
-    // console.log(product);
-
-    // console.log(wishlistItems);
-    // const isInWishlist = wishlistItems.some(item => item.id === product.id);
-
-    // const toggleWishlist = () => {
-    //     if (isInWishlist) {
-    //         dispatch(removeFromWishlist(product.id));
-    //     } else {
-    //         dispatch(addToWishlist(product));
-    //     }
-    // };
-
     if (status === 'loading') return (
-        <div className="text-center py-8">
+        <div className="text-center py-32">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
             <p className="mt-2">Loading product details...</p>
         </div>
     );
 
     if (status === 'failed') return (
-        <div className="text-center py-8 text-red-500">
+        <div className="text-center py-32 text-red-500">
             Failed to load product details. Please try again later.
         </div>
     );
 
     if (!product) return (
-        <div className="text-center py-8">
+        <div className="text-center py-32">
             Product not found
         </div>
     );

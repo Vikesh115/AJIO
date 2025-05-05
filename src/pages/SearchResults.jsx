@@ -34,7 +34,7 @@ const SearchResults = () => {
                     ))}
                 </div>
             ) : (
-                <div className="text-center py-12">
+                <div className="text-center py-20">
                     <p className="text-gray-600 text-lg">
                         No products found matching your search.
                     </p>
