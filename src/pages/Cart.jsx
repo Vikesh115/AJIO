@@ -20,7 +20,7 @@ const Cart = () => {
 
     if (cartItems.length === 0) {
         return (
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 py-12">
                 <div className="bg-white rounded-lg shadow-md p-8 text-center">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Your cart is empty</h2>
                     <p className="text-gray-600 mb-6">Looks like you haven't added any items to your cart yet.</p>
