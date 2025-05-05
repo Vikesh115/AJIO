@@ -15,7 +15,7 @@ const Jewelry = () => {
     }, [dispatch]);
 
     if (status === 'loading') return (
-        <div className="text-center py-28">
+        <div className="text-center py-32">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
             <p className="mt-2">Loading jewelry products...</p>
         </div>
