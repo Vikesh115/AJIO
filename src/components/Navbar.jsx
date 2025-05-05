@@ -7,6 +7,7 @@ import { selectCartItems } from '../features/cart/cartSlice';
 import { selectWishlistItems } from '../features/wishlist/wishlistSlice';
 import { ShoppingBagIcon, HeartIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useAuth } from '../context/AuthContext';
+import { selectAllProducts } from '../features/products/productsSlice';
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { currentUser, logout } = useAuth();
     const categories = useSelector(selectAllCategories);
+    const items = useSelector(selectAllProducts)
     const [searchQuery, setSearchQuery] = useState('');
 
     const cartItems = useSelector(selectCartItems);
@@ -53,6 +55,12 @@ const Navbar = () => {
             setSearchQuery('');
         }
     };
+
+    console.log(items);
+
+    const filteredProducts = items.filter(product =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <nav className="bg-gray-800 p-4">
@@ -132,6 +140,32 @@ const Navbar = () => {
                             </button>
                         </div>
                     </form>
+
+                    {searchQuery && (
+                    <div className="absolute z-10 md:top-24 top-36 left-0 right-0 bg-white shadow-lg rounded-b-lg border-t-0 border-gray-200 max-w-xl mx-auto mt-1">
+                        <div className="px-2 max-h-120 overflow-y-auto">
+                            {filteredProducts.length > 0 ? (
+                                filteredProducts.slice(0, 10).map(product => (
+                                    <Link
+                                        key={product.id}
+                                        to={`/product/${product.id}`}
+                                        className="flex items-center p-1 hover:bg-gray-50 rounded"
+                                        onClick={() => setSearchQuery('')}
+                                    >
+                                        <div className="text-xs">{product.title}</div>
+                                    </Link>
+                                ))
+                            ) : (
+                                <div className="p-2 text-xs text-gray-500">
+                                    No products found for "{searchQuery}"
+                                    <div className="text-blue-500 mt-1">
+                                        Try different keywords or browse our categories
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
                 </div>
 
                 <div className="flex items-center space-x-4 mt-4 md:mb-0">
