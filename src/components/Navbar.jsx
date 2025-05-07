@@ -142,7 +142,7 @@ const Navbar = () => {
                     </form>
 
                     {searchQuery && (
-                    <div className="absolute z-10 md:top-24 top-36 left-0 right-0 bg-white shadow-lg rounded-b-lg border-t-0 border-gray-200 max-w-xl mx-auto mt-1">
+                    <div className="absolute z-10 md:top-24 top-40 left-0 right-0 bg-white shadow-lg rounded-b-lg border-t-0 border-gray-200 max-w-xl mx-auto mt-1">
                         <div className="px-2 max-h-120 overflow-y-auto">
                             {filteredProducts.length > 0 ? (
                                 filteredProducts.slice(0, 10).map(product => (
